@@ -38,6 +38,7 @@ A busca em largura oferece o menor caminho para o estado objetivo. Com base nos 
 
 **Dependências**
 - Python 3.9.0 ou superior
+- Pillow==9.4.0
   
 **Execução**
 - Clone o projeto (ou baixe):
