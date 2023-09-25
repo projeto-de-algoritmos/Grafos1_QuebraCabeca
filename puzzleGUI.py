@@ -4,7 +4,7 @@ import testeGrafo as tg
 
 # Lista de 9 imagens (substitua esses caminhos pelos caminhos reais das suas imagens)
 imagens = [
-    "./_temp/imagem_1.png",
+    "./s/imagem_1.png",
     "./_temp/imagem_2.png",
     "./_temp/imagem_3.png",
     "./_temp/imagem_4.png",
