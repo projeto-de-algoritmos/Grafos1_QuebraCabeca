@@ -4,6 +4,7 @@ class PuzzleDoJogo:
     def __init__(self):
         # Declarando o estadoInicial e estadoObjetivo do puzzle
         self.estadoInicial = [[4, 7, 5], [2, 0, 8], [3, 1, 6]]
+        self.estadoInicialLista = [4, 7, 5, 2, 0, 8, 3, 1, 6]
         self.estadoObjetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
     def imprimir_estado(self, estado_atual):

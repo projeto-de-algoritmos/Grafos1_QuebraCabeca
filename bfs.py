@@ -2,6 +2,7 @@ import time
 import timeit
 from collections import deque
 from puzzle.valid_acao import acao
+import puzzleGame as pg
 
 # Estado do puzzle
 class PuzzleEstado:
@@ -27,8 +28,7 @@ class PuzzleEstado:
     def __str__(self): 
         return str(self.map)    
 
-
-Goalestado = [0, 1, 2, 3, 4, 5, 6, 7, 8] # Puzzle objetivo
+Goalestado = [1, 2, 3, 4, 5, 6, 7, 8, 0] # Puzzle objetivo
 GoalNode = None # Nó encontrado
 NodesExpanded = 0 # total de nós visitados
 MaxSearchDeep = 0 # largura (camadas)
@@ -95,11 +95,13 @@ def main():
     global GoalNode
 
     # Estado inicial em lista
-    data = [4, 7, 5, 2, 0, 8, 3, 1, 6]
-
+    #data = [4, 7, 5, 2, 0, 8, 3, 1, 6]
+    
     # Estado Puzzle convertido
     Initialestado = []
-    Initialestado = [int(data[i]) for i in range(9)]
+    #Initialestado = [int(data[i]) for i in range(9)]
+    Initialestado = pg.PuzzleDoJogo().estadoInicialLista
+    
 
     # Inicio contagem do tempo
     start = timeit.default_timer()
@@ -130,8 +132,6 @@ def main():
         acaos.insert(0, path)
         estados.insert(0, GoalNode.estado)  # Adicione o estado atual à lista de estados
         GoalNode = GoalNode.pai
-
-
 
     # Resultado
     print(Initialestado)
