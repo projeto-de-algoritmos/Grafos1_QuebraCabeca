@@ -1,81 +1,80 @@
 import os
 
-# declarando o estadoInicial e estadoObjetivo (estadoObjetivo) do puzzle
-estadoInicial = [['4','7','5'],['2','0','8'],['3','1','6']]
-estadoObjetivo = [['1','2','3'],['4','5','6'],['7','8','0']]
+class PuzzleDoJogo:
+    def __init__(self):
+        # Declarando o estadoInicial e estadoObjetivo do puzzle
+        self.estadoInicial = [[4, 7, 5], [2, 0, 8], [3, 1, 6]]
+        self.estadoObjetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
-def imprimirEstado(estadoAtual):
-    for i in range(len(estadoAtual)):
-        for j in range(len(estadoAtual[0])):
-            if estadoAtual[i][j] == '0':
-                print(" ", end=" ")
-            else:
-                print(estadoAtual[i][j], end=" ")
+    def imprimir_estado(self, estado_atual):
+        if estado_atual is None:
+            return
+
+        for i in range(len(estado_atual)):
+            for j in range(len(estado_atual[0])):
+                if estado_atual[i][j] == '0':
+                    print(" ", end=" ")
+                else:
+                    print(estado_atual[i][j], end=" ")
+            print()
         print()
-    print()
 
-imprimirEstado(estadoInicial)
+    def clear(self):
+        os.system('clear')
 
-# limpa a tela do terminal
-def clear():
-    os.system('clear')
+    def validacao(self, estado_atual, estado_objetivo):
+        if estado_atual == estado_objetivo:
+            print("Congratulations!")
+            exit()
 
-# compara o estado atual do puzzle com o estado estadoObjetivo
-def validacao(estadoAtual, estadoObjetivo):
-    if estadoAtual == estadoObjetivo:
-        print("Congratulations!")
-        exit()
+    def troca_posicao(self, direcao):
+        estado_atual = self.estadoInicial
+        
+        if direcao == "direita" or direcao == "d":
+            incV = 0
+            incH = 1
+        elif direcao == "cima" or direcao == "w":
+            incV = -1
+            incH = 0
+        elif direcao == "esquerda" or direcao == "a":
+            incV = 0
+            incH = -1
+        elif direcao == "baixo" or direcao == "s":
+            incV = 1
+            incH = 0
 
-# recebe o estado atual e a direcao que o 0 vai se locomover
-def trocaPosicao(estadoAtual, direcao):
+        for i in range(len(estado_atual)):
+            for j in range(len(estado_atual[0])):
+                if estado_atual[i][j] == 0:
+                    posicaoI0 = i
+                    posicaoJ0 = j
+                    break
+        try:
+            if (posicaoI0 + incV) < 0 or (posicaoJ0 + incH) < 0:
+                raise
+            else:
+                estado_atual[posicaoI0][posicaoJ0] = estado_atual[posicaoI0 + incV][posicaoJ0 + incH]
+                estado_atual[posicaoI0 + incV][posicaoJ0 + incH] = 0
+        except:
+            print("Movimento inválido")
+            # mostrando exception
 
-    # define a direcao que o 0 vai de acordo com as variaveis incrementoVertical (incV) e incrementoHorizontal (incH)
-    if direcao == "direita" or direcao == "d":
-        incV = 0
-        incH = 1
-    elif direcao == "cima" or direcao == "w":
-        incV = -1
-        incH = 0
-    elif direcao == "esquerda" or direcao == "a":
-        incV = 0
-        incH = -1
-    elif direcao == "baixo" or direcao == "s":
-        incV = 1
-        incH = 0
+        # self.imprimir_estado(estado_atual)
+        self.estadoInicial = estado_atual
 
-    # acha as coordenadas do 0 no estadoAtual
-    for i in range(len(estadoAtual)):
-        for j in range(len(estadoAtual[0])):
-            if estadoAtual[i][j] == '0':
-                posicaoI0 = i
-                posicaoJ0 = j
+    def main_loop(self):
+        while True:
+            self.validacao(self.estadoInicial, self.estadoObjetivo)
+            escolha = input('Use wasd para movimentar o espaço vazio, e pressione Enter para confirmar:\n')
+            self.clear()
+
+            if escolha == "":
                 break
+            else:
+                self.troca_posicao(escolha)
 
-    try:
-        # impede que haja qualquer movimento fora do comum do puzzle. 
-        # incV e incH sao os incrementos vertical e horizontal, respectivamente.
-        if (posicaoI0 + incV) < 0 or (posicaoJ0 + incH) < 0:
-            raise 
-        else:
-            # troca de posicao do zero com o valor presente na posicao que ele ira ocupar
-            estadoAtual[posicaoI0][posicaoJ0] = estadoAtual[posicaoI0 + incV][posicaoJ0 + incH]
-            estadoAtual[posicaoI0 + incV][posicaoJ0 + incH] = '0'
-    except:
-        print("movimento invalido")
-
-    imprimirEstado(estadoAtual)
-    
-    return estadoAtual
-
-def mainLoop(estadoInicial, estadoObjetivo):
-    while True:
-        validacao(estadoInicial, estadoObjetivo)
-        escolha = input('Use wasd para movimentar o espaco vazio, e de Enter para confirmar:\n')
-        clear()
-
-        if escolha == "":
-            break
-        else:
-            estadoInicial = trocaPosicao(estadoInicial, escolha)
-
-mainLoop(estadoInicial, estadoObjetivo)
+if __name__ == "__main__":
+    jogo = PuzzleDoJogo()
+    print(jogo.estadoInicial)
+    jogo.troca_posicao("d")
+    print(jogo.estadoInicial)
