@@ -6,8 +6,8 @@
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| 202045268  | Raquel Temóteo Eucaria Pereira da Costa|
-| xx/xxxxxx  |  Pedro Barbosa |
+| 20/2045268  | Raquel Temóteo Eucaria Pereira da Costa|
+| 20/0026046  |  Pedro de Oliveira Campos Barbosa |
 
 ## Sobre 
 Descreva os objetivos do seu projeto e como ele funciona. 
@@ -16,7 +16,7 @@ Descreva os objetivos do seu projeto e como ele funciona.
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
+**Linguagem**: Python<br>
 **Framework**: (caso exista)<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
