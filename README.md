@@ -24,7 +24,14 @@ A busca em largura oferece o menor caminho para o estado objetivo. Com base nos 
 
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![image](https://github.com/projeto-de-algoritmos/Grafos1_QuebraCabeca/assets/78980796/c970de53-ccc4-453c-b10b-1a367168bd47)
+
+![image](https://github.com/projeto-de-algoritmos/Grafos1_QuebraCabeca/assets/78980796/1cdbc690-e6c1-420d-b79e-794bf441b970)
+
+![image](https://github.com/projeto-de-algoritmos/Grafos1_QuebraCabeca/assets/78980796/41c2f51d-47dc-42eb-9350-3ebf65c58d8d)
+
+![image](https://github.com/projeto-de-algoritmos/Grafos1_QuebraCabeca/assets/78980796/04fafdfc-28a8-41a5-99ce-cf20cacc5aa2)
+
 
 ## Instalação 
 **Linguagem**: Python<br>
