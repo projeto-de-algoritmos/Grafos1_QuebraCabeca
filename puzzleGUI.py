@@ -5,11 +5,39 @@ import testeGrafo as tg
 class JogoPuzzleInterface:
     def __init__(self):
         self.janela = tk.Tk()
-        self.janela.title("Interface com 9 Imagens")
+        self.janela.title("Jogo de Puzzle")
+        self.janela.geometry("600x600")
+        self.frame_inicial = tk.Frame(self.janela)
+        self.frame_inicial.pack()
+        self.criar_frame_inicial()
+
+        self.jogo = None
+        self.ordem_imagens = None
+        self.imagem_widgets = {}
+
+    def criar_frame_inicial(self):
+        label = tk.Label(self.frame_inicial, text="Bem-vindo ao Jogo de Puzzle")
+        label.pack(pady=20)
+
+        botao_jogar = tk.Button(self.frame_inicial, text="Jogar", command=self.iniciar_jogo)
+        botao_jogar.pack()
+
+        botao_sair = tk.Button(self.frame_inicial, text="Sair", command=self.janela.quit)
+        botao_sair.pack()
+
+    def iniciar_jogo(self):
+        self.frame_inicial.destroy()
         self.frame = tk.Frame(self.janela)
         self.frame.pack()
 
-        # Lista de 9 imagens (substitua esses caminhos pelos caminhos reais das suas imagens)
+        # Adicionar o botão "Resolver"
+        botao_resolver = tk.Button(self.frame, text="Resolver", command=self.resolver_jogo)
+        botao_resolver.grid(row=3, column=1, pady=10)
+
+        # Resto do código da interface do jogo...
+        self.carregar_jogo()
+
+    def carregar_jogo(self):
         self.imagens = [
             "./src/imagem_1.png",
             "./src/imagem_2.png",
@@ -22,7 +50,6 @@ class JogoPuzzleInterface:
             "./src/imagem_9.png"
         ]
 
-        # Lista que representa a ordem inicial das imagens
         self.jogo = tg.PuzzleDoJogo()
         self.ordem_imagens = self.jogo.estadoInicial
 
@@ -82,20 +109,44 @@ class JogoPuzzleInterface:
                 self.ordem_imagens = self.jogo.estadoInicial
                 self.atualizar_ordem()
 
+    def resolver_jogo(self):
+        self.jogo.solucao()
+        self.ordem_imagens = self.jogo.estadoInicial
+        self.atualizar_ordem()
+
     def atualizar_ordem(self):
         global ordem_imagens
         ordem_imagens = self.jogo.estadoInicial
         for posicao, widget in self.imagem_widgets.items():
-            widget.grid_forget()  # Remove o widget da grid
-            # Recria o widget com a nova posição
+            widget.grid_forget()
             i, j = self.encontrar_posicao_widget(posicao)
             widget.grid(row=i, column=j, padx=5, pady=5)
+        
+        if self.verificar_vitoria():
+            self.exibir_parabenizacao()
 
     def encontrar_posicao_widget(self, posicao):
         for i in range(3):
             for j in range(3):
                 if self.ordem_imagens[i][j] == posicao:
                     return i, j
+
+    def verificar_vitoria(self):
+        # return self.jogo.validar()
+        return True
+
+    def exibir_parabenizacao(self):
+        parabenizacao = tk.Toplevel(self.janela)
+        parabenizacao.title("Parabéns!")
+
+        mensagem = tk.Label(parabenizacao, text="Você venceu o jogo!")
+        mensagem.pack(pady=20)
+
+        botao_ok = tk.Button(parabenizacao, text="OK", command=self.finalizar_jogo)
+        botao_ok.pack()
+
+    def finalizar_jogo(self):
+        self.janela.destroy()
 
     def executar(self):
         self.janela.mainloop()
