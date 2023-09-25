@@ -13,6 +13,7 @@ class PuzzleEstado:
         self.largura = largura # Na árvore de busca
         self.custo = custo # Custo acumulado até este nó
         self.chave = chave # Chave usada para ordenar os nós
+        self.acoes = [] # Ações possíveis
 
         # Se o estado atual não for nulo, converte a matriz em uma string
         if self.estado:
@@ -90,7 +91,7 @@ def print_estado(estado):
         print()
 
 
-def main():
+def main(self, estadoAtual):
 
     global GoalNode
 
@@ -100,8 +101,7 @@ def main():
     # Estado Puzzle convertido
     Initialestado = []
     #Initialestado = [int(data[i]) for i in range(9)]
-    Initialestado = pg.PuzzleDoJogo().estadoInicialLista
-    
+    Initialestado = estadoAtual  
 
     # Inicio contagem do tempo
     start = timeit.default_timer()
@@ -149,6 +149,8 @@ def main():
         cont+=1
 
     print("-----Informações------\n\n")
+
+    self.acoes = acaos
 
     print("Caminho: ",acaos)
     print("Custo: ", len(acaos))

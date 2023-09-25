@@ -4,7 +4,6 @@ class PuzzleDoJogo:
     def __init__(self):
         # Declarando o estadoInicial e estadoObjetivo do puzzle
         self.estadoInicial = [[4, 7, 5], [2, 0, 8], [3, 1, 6]]
-        self.estadoInicialLista = [4, 7, 5, 2, 0, 8, 3, 1, 6]
         self.estadoObjetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
     def imprimir_estado(self, estado_atual):
@@ -19,14 +18,20 @@ class PuzzleDoJogo:
                     print(estado_atual[i][j], end=" ")
             print()
         print()
+    
+    def to_list(self):
+        estado = []
+        for i in range(len(self.estadoInicial)):
+            for j in range(len(self.estadoInicial[0])):
+                estado.append(self.estadoInicial[i][j])
+        return estado
 
     def clear(self):
         os.system('clear')
 
-    def validacao(self, estado_atual, estado_objetivo):
-        if estado_atual == estado_objetivo:
-            print("Congratulations!")
-            exit()
+    def validar(self):
+        if self.estadoInicial == self.estadoObjetivo:
+            return True
 
     def troca_posicao(self, direcao):
         estado_atual = self.estadoInicial

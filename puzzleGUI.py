@@ -1,6 +1,8 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-import testeGrafo as tg
+import puzzleGame as pg
+import bfs
+from time import sleep
 
 class JogoPuzzleInterface:
     def __init__(self):
@@ -50,7 +52,7 @@ class JogoPuzzleInterface:
             "./src/imagem_9.png"
         ]
 
-        self.jogo = tg.PuzzleDoJogo()
+        self.jogo = pg.PuzzleDoJogo()
         self.ordem_imagens = self.jogo.estadoInicial
 
         self.imagem_widgets = {}
@@ -110,9 +112,13 @@ class JogoPuzzleInterface:
                 self.atualizar_ordem()
 
     def resolver_jogo(self):
-        self.jogo.solucao()
-        self.ordem_imagens = self.jogo.estadoInicial
-        self.atualizar_ordem()
+        movimentos = bfs.main(bfs, self.jogo.to_list())
+        movimentos = bfs.acoes
+        # print(movimentos)
+        for i in movimentos:
+            self.jogo.troca_posicao(i)
+            self.ordem_imagens = self.jogo.estadoInicial
+            self.atualizar_ordem()
 
     def atualizar_ordem(self):
         global ordem_imagens
@@ -132,8 +138,7 @@ class JogoPuzzleInterface:
                     return i, j
 
     def verificar_vitoria(self):
-        # return self.jogo.validar()
-        return True
+        return self.jogo.validar()
 
     def exibir_parabenizacao(self):
         parabenizacao = tk.Toplevel(self.janela)
