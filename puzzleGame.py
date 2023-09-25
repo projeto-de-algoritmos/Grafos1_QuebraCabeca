@@ -1,12 +1,18 @@
 import os
+import random
 
 class PuzzleDoJogo:
     def __init__(self):
         # Declarando o estadoInicial e estadoObjetivo do puzzle
-        self.estadoInicial = [[4, 7, 5], [2, 0, 8], [3, 1, 6]] # teste 1
-        # self.estadoInicial = [[3,2,0], [6,7,5], [4,1,8]] # teste 2
-        # self.estadoInicial = [[0,3,6], [1,2,4], [7,8,5]] # teste 3
-        # self.estadoInicial = [[6,2,5], [8,7,4], [0,1,3]] # teste 4
+
+        estados_iniciais = [
+            [[4, 7, 5], [2, 0, 8], [3, 1, 6]],  # teste 1
+            [[3, 2, 0], [6, 7, 5], [4, 1, 8]],  # teste 2
+            [[0, 3, 6], [1, 2, 4], [7, 8, 5]],  # teste 3
+            [[6, 2, 5], [8, 7, 4], [0, 1, 3]]   # teste 4
+        ]
+
+        self.estadoInicial = random.choice(estados_iniciais)
 
         self.estadoObjetivo = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
