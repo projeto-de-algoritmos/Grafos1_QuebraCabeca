@@ -62,13 +62,7 @@ A busca em largura oferece o menor caminho para o estado objetivo. Com base nos 
 3. Caso queira que o computador resolva, clique no botão resolver, o a busca em largura (BFS) será acionada.
 
 ## Apresentação
-[Clique aqui.](https://youtu.be/27ZLCZL7V5s)
+[Vídeo Youtube](https://youtu.be/27ZLCZL7V5s)
 
-<video width="640" height="360" controls>
-  <source src="/video/video.mp4" type="video/mp4">
-  Seu navegador não suporta a reprodução de vídeo.
-</video>
-
-
-
+[Vídeo Repositório](/video/video.mp4)
 
